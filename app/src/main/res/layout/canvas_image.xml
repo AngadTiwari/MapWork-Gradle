@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
-    android:layout_width="-1dp"
-    android:layout_height="-1dp"
-    android:descendantFocusability="beforeDescendants">
-    <!--<ImageView
-        android:id="@+id/invisibleMap"
+<AbsoluteLayout
+    android:id="@+id/topView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <AbsoluteLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main"
+        android:layout_width="-1dp"
+        android:layout_height="-1dp"
+        android:descendantFocusability="beforeDescendants">
+        <!--<ImageView
+            android:id="@+id/invisibleMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="matrix"
+            android:src="@drawable/map"
+            android:visibility="visible"/>-->
+    </AbsoluteLayout>
+    <ImageButton
+        android:id="@+id/zoomin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="matrix"
-        android:src="@drawable/map"
-        android:visibility="visible"/>-->
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/btn_plus"
+        android:layout_x="200dp"
+        android:layout_y="500dp"/>
+    <ImageButton
+        android:id="@+id/zoomout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/btn_minus"
+        android:layout_x="240dp"
+        android:layout_y="500dp"/>
 </AbsoluteLayout>
