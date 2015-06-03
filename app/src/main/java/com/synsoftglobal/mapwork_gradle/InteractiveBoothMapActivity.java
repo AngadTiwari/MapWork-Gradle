@@ -42,7 +42,6 @@ public class InteractiveBoothMapActivity extends Activity implements
         OnTouchListener {
 
     private static final String TAG = "Gesture";
-    private static final float MIN_ZOOM = 1f, MAX_ZOOM = 1f;
     Matrix matrix = new Matrix();
     Matrix savedMatrix = new Matrix();
 
@@ -72,8 +71,8 @@ public class InteractiveBoothMapActivity extends Activity implements
     GestureDetector gestureDetector;
     OnTouchListener gestureListener;
 
-    boolean canZoomIn=true;
-    boolean canZoomOut=true;
+    private static final float MIN_ZOOM = 0.7f;
+    private static final float MAX_ZOOM = 5.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,18 +251,9 @@ public class InteractiveBoothMapActivity extends Activity implements
                     float newDist = spacing(event);
                     Log.d(TAG, "newDist=" + newDist);
 
-                    if(view.getWidth()<=600)
-                        canZoomOut = false;
-                    else if(view.getWidth()>600 && view.getWidth()<1800)
-                        canZoomOut = true;
-                    else if(view.getWidth()>=1800)
-                        canZoomIn = false;
-                    else if(view.getWidth()>600 && view.getWidth()<1800)
-                        canZoomIn = true;
-
                     if (newDist >15f) {
                         matrix.set(savedMatrix);
-                        scale = (newDist / oldDist);
+                        scale = Math.max(MIN_ZOOM, Math.min((newDist / oldDist), MAX_ZOOM));//(newDist / oldDist);
                         //matrix.postScale(scale, scale, mid.x, mid.y);
                         view.animate().scaleX(scale).scaleY(scale).setDuration(1);
                     }
